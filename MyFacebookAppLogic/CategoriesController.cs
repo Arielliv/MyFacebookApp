@@ -6,6 +6,7 @@ namespace MyFacebookAppLogic
 {
     public class CategoriesController
     {
+
         public Dictionary<string, bool> Categories { get; private set; }
         public Dictionary<Page, string> PagesWithCategories { get; }
         private readonly string r_DefualtCategory = "None";
