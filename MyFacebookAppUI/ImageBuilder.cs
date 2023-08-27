@@ -6,7 +6,7 @@ using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public class ImageBuilder
+    public class ImageBuilder: IBuilder
     {
         private readonly List<Control> r_Components = new List<Control>();
         private PictureBox m_PictureBox;
@@ -61,12 +61,18 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public List<Control> Build() 
+        public IBuilder Build()
         {
             r_Components.Add(m_PictureBox);
             r_Components.Add(m_Label);
             r_Components.Add(m_CheckBox);
             r_Components.Add(m_Button);
+
+            return this;
+        }
+
+        public List<Control> Get()
+        {
             return r_Components;
         }
     }

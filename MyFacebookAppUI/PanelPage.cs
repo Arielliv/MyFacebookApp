@@ -22,14 +22,12 @@ namespace MyFacebookAppUI
 
         public void ShowPage()
         {
-            PageBuilder pageBuilder = new PageBuilder();
-
-            Controls.AddRange(pageBuilder
-                .AddPictureBox(m_Page.PictureSmallURL)
-                .AddNameLabel(m_Page.Name)
-                .AddCategoryLabel("Category:" + m_Category)
-                .AddLinkLabel("Change category", m_Page, ChangePageCategory_Click)
-                .Build()
+            Controls.AddRange(
+                BuilderComposer.CreatePanelPage(
+                    m_Category,
+                    m_Page,
+                    ChangePageCategory_Click
+                    )
                 .ToArray()
                 );
         }

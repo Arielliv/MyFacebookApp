@@ -1,7 +1,7 @@
 ﻿
 namespace MyFacebookAppUI
 {
-    partial class RoundPictureBox
+    partial class EllipsePictureBox
     {
         /// <summary>
         /// Required designer variable.

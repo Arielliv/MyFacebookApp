@@ -5,14 +5,14 @@ using System.Windows.Forms;
 
 namespace MyFacebookAppUI
 {
-    public partial class RoundPictureBox : PictureBox
+    public partial class EllipsePictureBox : PictureBox
     {
         protected override void OnSizeChanged(EventArgs e)
         {
-            GraphicsPath gp = new GraphicsPath();
+            GraphicsPath graphicsPath = new GraphicsPath();
 
-            gp.AddEllipse(DisplayRectangle);
-            Region = new Region(gp);
+            graphicsPath.AddEllipse(DisplayRectangle);
+            Region = new Region(graphicsPath);
             base.OnSizeChanged(e);
         }
     }

@@ -21,15 +21,13 @@ namespace MyFacebookAppUI
 
         public void ShowAlbum()
         {
-            AlbumBuilder albumBuilder = new AlbumBuilder();
-
-            Controls.AddRange(albumBuilder
-               .AddPictureBox(r_Album.PictureAlbumURL)
-               .AddButton(r_Album.Name, new EventHandler(currentButton_Click))
-               .Build()
-               .ToArray()
-               );
-
+            Controls.AddRange(
+                BuilderComposer.CreatePanelAlbum(
+                    r_Album,
+                    new EventHandler(currentButton_Click)
+                    )
+                .ToArray()
+                );
         }
 
         private void currentButton_Click(object sender, EventArgs e)

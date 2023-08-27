@@ -27,16 +27,16 @@ namespace MyFacebookAppUI
 
         public void ShowImage()
         {
-            ImageBuilder imageBuilder = new ImageBuilder();
-
-            Controls.AddRange(imageBuilder
-               .AddPictureBox(r_Image.PictureAlbumURL)
-               .AddLabel($"Likes: {r_Image.LikedBy.Count}")
-               .AddButton("Comments", new EventHandler(currentButton_Click))
-               .AddCheckbox(r_IndexesOfFavoritePhotos.Contains(r_ImageIndex), new EventHandler(addToFavoriteCheckBox_CheckedChanged))
-               .Build()
-               .ToArray()
-               );
+            Controls.AddRange(
+                BuilderComposer.CreatePanelImage(
+                    r_Image.PictureAlbumURL,
+                    r_Image.LikedBy.Count,
+                    new EventHandler(currentButton_Click),
+                    r_IndexesOfFavoritePhotos.Contains(r_ImageIndex),
+                    new EventHandler(addToFavoriteCheckBox_CheckedChanged)
+                    )
+                .ToArray()
+            );
             Controls.Add(r_CommentsListBox);
             r_CommentsListBox.Hide();
         }

@@ -8,7 +8,7 @@ using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public class PageBuilder
+    public class PageBuilder: IBuilder
     {
         private readonly List<Control> r_Components = new List<Control>();
         private PictureBox m_PictureBox;
@@ -61,13 +61,18 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public List<Control> Build() 
+        public IBuilder Build()
         {
             r_Components.Add(m_PictureBox);
             r_Components.Add(m_PageLabel);
             r_Components.Add(m_CategoryLabel);
             r_Components.Add(m_LinkLabel);
-            
+
+            return this;
+        }
+
+        public List<Control> Get()
+        {
             return r_Components;
         }
     }

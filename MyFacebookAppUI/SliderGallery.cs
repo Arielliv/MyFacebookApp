@@ -37,6 +37,12 @@ namespace MyFacebookAppUI
             r_Images.Remove(image);
         }
 
+        public void StopSlider()
+        {
+            r_Timer.Stop();
+            this.Hide();
+        }
+
         public void StartSlider()
         {
             if (r_Images.Count != 0)

@@ -148,17 +148,7 @@ namespace MyFacebookAppUI
 
         private void getCheckIns()
         {
-            listBoxCheckIn.Items.Clear();
-            listBoxCheckIn.DisplayMember = "Name";
-            foreach (Checkin checkIn in MyFacebookAppController.Instance.LoggedInUser.Checkins)
-            {
-                listBoxCheckIn.Items.Add(checkIn);
-            }
-
-            if (MyFacebookAppController.Instance.LoggedInUser.Checkins.Count == 0)
-            {
-                MessageBox.Show("No check-in to display");
-            }
+            checkinBindingSource.DataSource = MyFacebookAppController.Instance.LoggedInUser.Checkins;
         }
 
         private void buttonGroups_Click(object sender, EventArgs e)
@@ -360,6 +350,7 @@ namespace MyFacebookAppUI
 
         private void buttonShowFavorites_Click(object sender, EventArgs e)
         {
+            SliderGallery.StopSlider();
             for (int i = 0; i < MyFacebookAppController.Instance.MyFacebookAppSettings.AlbumsIndices.Count; i++)
             {
                 int albumIndex = MyFacebookAppController.Instance.MyFacebookAppSettings.AlbumsIndices[i];

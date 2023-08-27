@@ -28,8 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label cityLabel;
+            System.Windows.Forms.Label descriptionLabel;
+            System.Windows.Forms.Label createdTimeLabel;
             this.menuTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkinCreatedTimeLabel = new System.Windows.Forms.Label();
+            this.checkinBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.checkInDescriptionLabel = new System.Windows.Forms.Label();
+            this.checkInCityLabel = new System.Windows.Forms.Label();
+            this.buttonShowFavorites = new System.Windows.Forms.Button();
             this.labelMyFavorites = new System.Windows.Forms.Label();
             this.SaveDesign = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
@@ -55,6 +65,7 @@
             this.buttonEvents = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.labelUserName = new System.Windows.Forms.Label();
+            this.pictureBoxProfile = new MyFacebookAppUI.EllipsePictureBox();
             this.pictureBoxCover = new System.Windows.Forms.PictureBox();
             this.listBoxPosts = new System.Windows.Forms.ListBox();
             this.buttonFriends = new System.Windows.Forms.Button();
@@ -65,15 +76,45 @@
             this.flowLayoutPanelPages = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonFilter = new System.Windows.Forms.Button();
             this.buttonCreateCategory = new System.Windows.Forms.Button();
-            this.buttonShowFavorites = new System.Windows.Forms.Button();
-            this.pictureBoxProfile = new MyFacebookAppUI.RoundPictureBox();
+            cityLabel = new System.Windows.Forms.Label();
+            descriptionLabel = new System.Windows.Forms.Label();
+            createdTimeLabel = new System.Windows.Forms.Label();
             this.menuTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCover)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.SuspendLayout();
+            // 
+            // cityLabel
+            // 
+            cityLabel.AutoSize = true;
+            cityLabel.Location = new System.Drawing.Point(11, 51);
+            cityLabel.Name = "cityLabel";
+            cityLabel.Size = new System.Drawing.Size(29, 15);
+            cityLabel.TabIndex = 2;
+            cityLabel.Text = "City:";
+            // 
+            // descriptionLabel
+            // 
+            descriptionLabel.AutoSize = true;
+            descriptionLabel.Location = new System.Drawing.Point(10, 71);
+            descriptionLabel.Name = "descriptionLabel";
+            descriptionLabel.Size = new System.Drawing.Size(72, 15);
+            descriptionLabel.TabIndex = 6;
+            descriptionLabel.Text = "Description:";
+            // 
+            // createdTimeLabel
+            // 
+            createdTimeLabel.AutoSize = true;
+            createdTimeLabel.Location = new System.Drawing.Point(11, 10);
+            createdTimeLabel.Name = "createdTimeLabel";
+            createdTimeLabel.Size = new System.Drawing.Size(84, 15);
+            createdTimeLabel.TabIndex = 7;
+            createdTimeLabel.Text = "Created Time:";
             // 
             // menuTab
             // 
@@ -94,6 +135,7 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
+            this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.buttonShowFavorites);
             this.tabPage1.Controls.Add(this.labelMyFavorites);
             this.tabPage1.Controls.Add(this.SaveDesign);
@@ -132,6 +174,63 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Azure;
+            this.panel1.Controls.Add(this.checkinCreatedTimeLabel);
+            this.panel1.Controls.Add(createdTimeLabel);
+            this.panel1.Controls.Add(descriptionLabel);
+            this.panel1.Controls.Add(this.checkInDescriptionLabel);
+            this.panel1.Controls.Add(cityLabel);
+            this.panel1.Controls.Add(this.checkInCityLabel);
+            this.panel1.Location = new System.Drawing.Point(787, 450);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(143, 153);
+            this.panel1.TabIndex = 123;
+            // 
+            // checkinCreatedTimeLabel
+            // 
+            this.checkinCreatedTimeLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "CreatedTime", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "[No data]"));
+            this.checkinCreatedTimeLabel.Location = new System.Drawing.Point(11, 28);
+            this.checkinCreatedTimeLabel.Name = "checkinCreatedTimeLabel";
+            this.checkinCreatedTimeLabel.Size = new System.Drawing.Size(100, 23);
+            this.checkinCreatedTimeLabel.TabIndex = 8;
+            // 
+            // checkinBindingSource
+            // 
+            this.checkinBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Checkin);
+            // 
+            // checkInDescriptionLabel
+            // 
+            this.checkInDescriptionLabel.AutoEllipsis = true;
+            this.checkInDescriptionLabel.AutoSize = true;
+            this.checkInDescriptionLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "[No data]"));
+            this.checkInDescriptionLabel.Location = new System.Drawing.Point(11, 92);
+            this.checkInDescriptionLabel.MaximumSize = new System.Drawing.Size(100, 60);
+            this.checkInDescriptionLabel.Name = "checkInDescriptionLabel";
+            this.checkInDescriptionLabel.Size = new System.Drawing.Size(0, 15);
+            this.checkInDescriptionLabel.TabIndex = 7;
+            // 
+            // checkInCityLabel
+            // 
+            this.checkInCityLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.checkinBindingSource, "Place.Location.City", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "[No data]"));
+            this.checkInCityLabel.Location = new System.Drawing.Point(44, 51);
+            this.checkInCityLabel.Name = "checkInCityLabel";
+            this.checkInCityLabel.Size = new System.Drawing.Size(83, 23);
+            this.checkInCityLabel.TabIndex = 3;
+            // 
+            // buttonShowFavorites
+            // 
+            this.buttonShowFavorites.BackColor = System.Drawing.Color.MidnightBlue;
+            this.buttonShowFavorites.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.buttonShowFavorites.Location = new System.Drawing.Point(585, 133);
+            this.buttonShowFavorites.Name = "buttonShowFavorites";
+            this.buttonShowFavorites.Size = new System.Drawing.Size(124, 26);
+            this.buttonShowFavorites.TabIndex = 122;
+            this.buttonShowFavorites.Text = "View";
+            this.buttonShowFavorites.UseVisualStyleBackColor = false;
+            this.buttonShowFavorites.Click += new System.EventHandler(this.buttonShowFavorites_Click);
             // 
             // labelMyFavorites
             // 
@@ -243,7 +342,7 @@
             this.labelStatus.Location = new System.Drawing.Point(18, 548);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(493, 55);
+            this.labelStatus.Size = new System.Drawing.Size(450, 55);
             this.labelStatus.TabIndex = 110;
             this.labelStatus.Text = "ChosenStatus";
             // 
@@ -299,8 +398,10 @@
             // 
             // listBoxCheckIn
             // 
+            this.listBoxCheckIn.DataSource = this.checkinBindingSource;
+            this.listBoxCheckIn.DisplayMember = "Name";
             this.listBoxCheckIn.FormattingEnabled = true;
-            this.listBoxCheckIn.Location = new System.Drawing.Point(772, 495);
+            this.listBoxCheckIn.Location = new System.Drawing.Point(643, 495);
             this.listBoxCheckIn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxCheckIn.Name = "listBoxCheckIn";
             this.listBoxCheckIn.Size = new System.Drawing.Size(140, 108);
@@ -310,7 +411,7 @@
             // 
             this.buttonCheckIn.BackColor = System.Drawing.Color.MidnightBlue;
             this.buttonCheckIn.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.buttonCheckIn.Location = new System.Drawing.Point(772, 448);
+            this.buttonCheckIn.Location = new System.Drawing.Point(643, 448);
             this.buttonCheckIn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCheckIn.Name = "buttonCheckIn";
             this.buttonCheckIn.Size = new System.Drawing.Size(94, 36);
@@ -355,7 +456,7 @@
             // listBoxEvents
             // 
             this.listBoxEvents.FormattingEnabled = true;
-            this.listBoxEvents.Location = new System.Drawing.Point(606, 495);
+            this.listBoxEvents.Location = new System.Drawing.Point(476, 495);
             this.listBoxEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxEvents.Name = "listBoxEvents";
             this.listBoxEvents.Size = new System.Drawing.Size(140, 108);
@@ -374,7 +475,7 @@
             // 
             this.buttonEvents.BackColor = System.Drawing.Color.MidnightBlue;
             this.buttonEvents.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.buttonEvents.Location = new System.Drawing.Point(606, 450);
+            this.buttonEvents.Location = new System.Drawing.Point(476, 450);
             this.buttonEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonEvents.Name = "buttonEvents";
             this.buttonEvents.Size = new System.Drawing.Size(102, 34);
@@ -404,6 +505,16 @@
             this.labelUserName.Size = new System.Drawing.Size(273, 31);
             this.labelUserName.TabIndex = 95;
             this.labelUserName.Text = "LoggedInUserName";
+            // 
+            // pictureBoxProfile
+            // 
+            this.pictureBoxProfile.Location = new System.Drawing.Point(19, 16);
+            this.pictureBoxProfile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBoxProfile.Name = "pictureBoxProfile";
+            this.pictureBoxProfile.Size = new System.Drawing.Size(190, 175);
+            this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxProfile.TabIndex = 94;
+            this.pictureBoxProfile.TabStop = false;
             // 
             // pictureBoxCover
             // 
@@ -514,33 +625,12 @@
             this.buttonCreateCategory.UseVisualStyleBackColor = true;
             this.buttonCreateCategory.Click += new System.EventHandler(this.buttonCreateCategory_Click);
             // 
-            // buttonShowFavorites
-            // 
-            this.buttonShowFavorites.BackColor = System.Drawing.Color.MidnightBlue;
-            this.buttonShowFavorites.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.buttonShowFavorites.Location = new System.Drawing.Point(585, 133);
-            this.buttonShowFavorites.Name = "buttonShowFavorites";
-            this.buttonShowFavorites.Size = new System.Drawing.Size(124, 26);
-            this.buttonShowFavorites.TabIndex = 122;
-            this.buttonShowFavorites.Text = "View";
-            this.buttonShowFavorites.UseVisualStyleBackColor = false;
-            this.buttonShowFavorites.Click += new System.EventHandler(this.buttonShowFavorites_Click);
-            // 
-            // pictureBoxProfile
-            // 
-            this.pictureBoxProfile.Location = new System.Drawing.Point(19, 16);
-            this.pictureBoxProfile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(190, 175);
-            this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxProfile.TabIndex = 94;
-            this.pictureBoxProfile.TabStop = false;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1155, 641);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1262, 641);
             this.Controls.Add(this.menuTab);
             this.MaximumSize = new System.Drawing.Size(1280, 688);
             this.Name = "FormMain";
@@ -550,10 +640,13 @@
             this.menuTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCover)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -596,8 +689,13 @@
         private System.Windows.Forms.Button buttonCreateCategory;
         private System.Windows.Forms.CheckedListBox checkedListBoxCategories;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelPages;
-        private RoundPictureBox pictureBoxProfile;
+        private EllipsePictureBox pictureBoxProfile;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAlbums;
         private System.Windows.Forms.Button buttonShowFavorites;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.BindingSource checkinBindingSource;
+        private System.Windows.Forms.Label checkInCityLabel;
+        private System.Windows.Forms.Label checkInDescriptionLabel;
+        private System.Windows.Forms.Label checkinCreatedTimeLabel;
     }
 }
