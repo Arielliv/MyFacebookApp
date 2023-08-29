@@ -71,18 +71,7 @@ namespace MyFacebookAppUI
         {
             foreach (Post post in MyFacebookAppController.Instance.LoggedInUser.Posts)
             {
-                if (post.Message != null)
-                {
-                    Invoke(new Action(() => listBoxPosts.Items.Add(post.Message)));
-                }
-                else if (post.Caption != null)
-                {
-                    Invoke(new Action(() => listBoxPosts.Items.Add(post.Caption)));
-                }
-                else
-                {
-                    Invoke(new Action(() => listBoxPosts.Items.Add($"Post type: [{post.Type}]")));
-                }
+                Invoke(new Action(() => listBoxPosts.Items.Add(new PostProxy(post))));
             }
 
             if (MyFacebookAppController.Instance.LoggedInUser.Posts.Count == 0)
