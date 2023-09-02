@@ -24,13 +24,13 @@ namespace MyFacebookAppUI
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            new Thread(getImages).Start();
+            new Thread(getProfileImage).Start();
             new Thread(getInfo).Start();
             new Thread(getPosts).Start();
             new Thread(setFavoriteImages).Start();
         }
 
-        private void getImages()
+        private void getProfileImage()
         {
             pictureBoxProfile.LoadAsync(MyFacebookAppController.Instance.LoggedInUser.PictureNormalURL);
         }
@@ -92,6 +92,7 @@ namespace MyFacebookAppUI
         {
             SliderGallery = new SliderGallery();
             Invoke(new Action(() => this.tabPage1.Controls.Add(SliderGallery)));
+            showSliderGallery();
         }
 
         private void buttonAddPost_Click(object sender, EventArgs e)
@@ -249,6 +250,12 @@ namespace MyFacebookAppUI
             comboBoxButtonsColor.Items.AddRange(Constants.sr_ColorNames);
             comboBoxNameColor.Items.AddRange(Constants.sr_ColorNames);
             comboBoxPageColor.Items.AddRange(Constants.sr_ColorNames);
+            MyFacebookAppController.Instance.SliderGalleryController.SliderGalleryImagesChanged += sliderGallery_OnSliderGalleryImagesChanged;
+        }
+
+        private void sliderGallery_OnSliderGalleryImagesChanged()
+        {
+            SliderGallery.Image = MyFacebookAppController.Instance.SliderGalleryController.CurrentImage;
         }
 
         private void showFormLogin()
@@ -337,9 +344,8 @@ namespace MyFacebookAppUI
             }
         }
 
-        private void buttonShowFavorites_Click(object sender, EventArgs e)
+        private void showSliderGallery()
         {
-            SliderGallery.StopSlider();
             for (int i = 0; i < MyFacebookAppController.Instance.MyFacebookAppSettings.AlbumsIndices.Count; i++)
             {
                 int albumIndex = MyFacebookAppController.Instance.MyFacebookAppSettings.AlbumsIndices[i];
@@ -347,10 +353,10 @@ namespace MyFacebookAppUI
 
                 foreach (int imageIndex in favoriteImagesIndexesInAlbum)
                 {
-                    SliderGallery.AddImageToSliderGallery(MyFacebookAppController.Instance.LoggedInUser.Albums[albumIndex].Photos[imageIndex]);
+                    MyFacebookAppController.Instance.SliderGalleryController.Add(MyFacebookAppController.Instance.LoggedInUser.Albums[albumIndex].Photos[imageIndex].ImageNormal);
                 }
 
-                SliderGallery.StartSlider();
+                MyFacebookAppController.Instance.SliderGalleryController.Start();
             }
         }
     }

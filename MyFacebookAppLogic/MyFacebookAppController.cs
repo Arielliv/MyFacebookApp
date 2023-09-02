@@ -18,6 +18,7 @@ namespace MyFacebookAppLogic
 		public CategoriesController CategoriesController { get; private set; }
 		private static MyFacebookAppController s_Instance = null;
 		private static object s_LockObj = new object();
+		public SliderGalleryController SliderGalleryController { get; } = new SliderGalleryController(TimeSpan.FromSeconds(1.5));
 
 		private MyFacebookAppController()
 		{
@@ -178,7 +179,7 @@ namespace MyFacebookAppLogic
 		public void SavePagesWithCategories()
         {
 			MyFacebookAppSettings.PagesWithCategories.Clear();
-			foreach (KeyValuePair<Page, string> PagesWithCategory in CategoriesController.PagesWithCategories)
+			foreach (KeyValuePair<Page, string> PagesWithCategory in CategoriesController)
             {
 				MyFacebookAppSettings.PagesWithCategories.Add(PagesWithCategory.Value);
 			}

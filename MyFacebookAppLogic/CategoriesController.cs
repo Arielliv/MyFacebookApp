@@ -1,10 +1,11 @@
 ﻿using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace MyFacebookAppLogic
 {
-    public class CategoriesController
+    public class CategoriesController: IEnumerable<KeyValuePair<Page, string>>
     {
         public Dictionary<string, bool> Categories { get; private set; }
         public Dictionary<Page, string> PagesWithCategories { get; }
@@ -79,6 +80,19 @@ namespace MyFacebookAppLogic
                     this.Categories[category] = false;
                 }
             }
+        }
+
+        public IEnumerator<KeyValuePair<Page, string>> GetEnumerator()
+        {
+            foreach (KeyValuePair<Page, string> entry in PagesWithCategories)
+            {
+                yield return entry;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

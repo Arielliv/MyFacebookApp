@@ -6,30 +6,17 @@ using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public class ImageBuilder: IBuilder
+    public class ImageBuilder: BuilderDecorator
     {
-        private readonly List<Control> r_Components = new List<Control>();
-        private PictureBox m_PictureBox;
         private Label m_Label;
         private CheckBox m_CheckBox;
         private Button m_Button;
         private readonly int r_XPosition = 0;
-        private readonly int r_PictureBoxYPosition = 50;
         private readonly int r_ButtonYPosition = 150;
         private readonly int r_LikesLabelYPosition = 180;
         private readonly int r_CheckboxYPosition = 200;
-        
 
-        public ImageBuilder AddPictureBox(string i_PictureURL)
-        {
-            m_PictureBox = new PictureBox();
-            m_PictureBox.LoadAsync(i_PictureURL);
-            m_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            m_PictureBox.Location = new Point(r_XPosition, r_PictureBoxYPosition);
-            m_PictureBox.Size = new Size(Constants.k_PictureBoxWidth, Constants.k_PictureBoxHeight);
-
-            return this;
-        }
+        public ImageBuilder(IBuilder i_Builder) : base(i_Builder) { }
 
         public ImageBuilder AddButton(string i_Text, EventHandler i_EventHandler)
         {
@@ -61,19 +48,14 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public IBuilder Build()
+        public override IBuilder Build()
         {
-            r_Components.Add(m_PictureBox);
-            r_Components.Add(m_Label);
-            r_Components.Add(m_CheckBox);
-            r_Components.Add(m_Button);
+            base.Build();
+            r_Builder.AddToComponents(m_Label);
+            r_Builder.AddToComponents(m_CheckBox);
+            r_Builder.AddToComponents(m_Button);
 
             return this;
-        }
-
-        public List<Control> Get()
-        {
-            return r_Components;
         }
     }
 }

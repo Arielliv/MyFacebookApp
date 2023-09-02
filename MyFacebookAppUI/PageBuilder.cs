@@ -1,31 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public class PageBuilder: IBuilder
+    public class PageBuilder: BuilderDecorator
     {
-        private readonly List<Control> r_Components = new List<Control>();
-        private PictureBox m_PictureBox;
         private Label m_CategoryLabel;
         private Label m_PageLabel;
         private LinkLabel m_LinkLabel;
-        private readonly int r_XPosition = 50;
-        private readonly int r_PictureBoxYPosition = 50;
-        private readonly int r_AddNameLabelYPosition = 100;
         private readonly int r_CategoryLabelYPosition = 123;
         private readonly int r_LinkLabelYPosition = 146;
+        private readonly int r_AddNameLabelYPosition = 100;
 
-        public PageBuilder AddPictureBox(string i_PictureURL)
+        public PageBuilder(IBuilder i_Builder) : base(i_Builder) { }
+
+        public PageBuilder AddCategoryLabel(string i_Name)
         {
-            m_PictureBox = new PictureBox();
-            m_PictureBox.LoadAsync(i_PictureURL);
-            m_PictureBox.Location = new Point(r_XPosition, r_PictureBoxYPosition);
+            m_CategoryLabel = new Label();
+            m_CategoryLabel.Text = i_Name;
+            m_CategoryLabel.Location = new Point(Constants.k_StartLocationX, r_CategoryLabelYPosition);
             
             return this;
         }
@@ -35,16 +31,7 @@ namespace MyFacebookAppUI
             m_PageLabel = new Label();
             m_PageLabel.Text = i_Name;
             m_PageLabel.Location = new Point(Constants.k_StartLocationX, r_AddNameLabelYPosition);
-            
-            return this;
-        }
 
-        public PageBuilder AddCategoryLabel(string i_Name)
-        {
-            m_CategoryLabel = new Label();
-            m_CategoryLabel.Text = i_Name;
-            m_CategoryLabel.Location = new Point(Constants.k_StartLocationX, r_CategoryLabelYPosition);
-            
             return this;
         }
 
@@ -61,19 +48,14 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public IBuilder Build()
+        public override IBuilder Build()
         {
-            r_Components.Add(m_PictureBox);
-            r_Components.Add(m_PageLabel);
-            r_Components.Add(m_CategoryLabel);
-            r_Components.Add(m_LinkLabel);
+            base.Build();
+            r_Builder.AddToComponents(m_CategoryLabel);
+            r_Builder.AddToComponents(m_LinkLabel);
+            r_Builder.AddToComponents(m_PageLabel);
 
             return this;
-        }
-
-        public List<Control> Get()
-        {
-            return r_Components;
         }
     }
 }

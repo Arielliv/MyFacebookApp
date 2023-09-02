@@ -49,11 +49,13 @@ namespace MyFacebookAppUI
                 {
                     if (!r_IndexesOfFavoritePhotos.Contains(r_ImageIndex))
                     {
+                        MyFacebookAppController.Instance.SliderGalleryController.Add(r_Image.ImageNormal);
                         r_IndexesOfFavoritePhotos.Add(r_ImageIndex);
                     }
                 }
                 else
                 {
+                    MyFacebookAppController.Instance.SliderGalleryController.Remove(r_Image.ImageNormal);
                     r_IndexesOfFavoritePhotos.Remove(r_ImageIndex);
                 }
             }

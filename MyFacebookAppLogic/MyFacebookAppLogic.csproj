@@ -43,6 +43,7 @@
     <Compile Include="CategoriesController.cs" />
     <Compile Include="MyFacebookAppController.cs" />
     <Compile Include="MyFacebookAppSettings.cs" />
+    <Compile Include="SliderGalleryController.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>

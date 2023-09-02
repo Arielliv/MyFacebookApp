@@ -48,6 +48,7 @@ namespace MyFacebookAppUI
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
+            MyFacebookAppController.Instance.SliderGalleryController.Start();
             if (MyFacebookAppController.Instance.FavoriteImageIndex.ContainsKey(r_AlbumIndex))
             {
                 MyFacebookAppController.Instance.FavoriteImageIndex.Remove(r_AlbumIndex);
