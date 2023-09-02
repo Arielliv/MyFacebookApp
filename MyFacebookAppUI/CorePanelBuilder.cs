@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace MyFacebookAppUI
 {
-    public class CoreBuilder: IBuilder
+    public class CorePanelBuilder: IPanelBuilder
     {
         private readonly List<Control> r_Components = new List<Control>();
         private PictureBox m_PictureBox;
         private readonly int r_PictureBoxYPosition = 50;
 
-        public IBuilder AddPictureBox(string i_PictureURL, Size i_Size, int i_XPosition, PictureBoxSizeMode i_PictureBoxSizeMode = PictureBoxSizeMode.Normal)
+        public IPanelBuilder AddPictureBox(string i_PictureURL, Size i_Size, int i_XPosition, PictureBoxSizeMode i_PictureBoxSizeMode = PictureBoxSizeMode.Normal)
         {
             m_PictureBox = new PictureBox();
             m_PictureBox.LoadAsync(i_PictureURL);
@@ -26,7 +26,7 @@ namespace MyFacebookAppUI
             r_Components.Add(i_Control);
         }
 
-        public IBuilder Build()
+        public IPanelBuilder Build()
         {
             AddToComponents(m_PictureBox);
 

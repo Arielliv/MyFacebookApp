@@ -22,7 +22,7 @@ namespace MyFacebookAppUI
         public void ShowAlbum()
         {
             Controls.AddRange(
-                BuilderComposer.CreatePanelAlbum(
+                PanelBuilderComposer.CreatePanelAlbum(
                     r_Album,
                     new EventHandler(currentButton_Click)
                     )

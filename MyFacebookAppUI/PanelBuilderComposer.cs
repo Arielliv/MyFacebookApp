@@ -7,7 +7,7 @@ using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public static class BuilderComposer
+    public static class PanelBuilderComposer
     {
         private static readonly int sr_XPositionStart = 0;
         private static readonly int sr_XPositionMiddle = 50;
@@ -15,7 +15,7 @@ namespace MyFacebookAppUI
         private static readonly Size sr_SmallImageSize = new Size(50, 50);
         public static List<Control> CreatePanelImage(string i_PictureAlbumURL, int i_LikesCount, EventHandler i_Button_Click, bool i_CheckboxState, EventHandler i_CheckBox_CheckedChanged)
         {
-            ImageBuilder imageBuilder = new ImageBuilder(new CoreBuilder());
+            ImagePanelBuilder imageBuilder = new ImagePanelBuilder(new CorePanelBuilder());
 
             imageBuilder
                .AddButton("Comments", i_Button_Click)
@@ -29,7 +29,7 @@ namespace MyFacebookAppUI
 
         public static List<Control> CreatePanelPage(string i_CategoryName, Page i_Page, Action<object, EventArgs, Page, Label> i_ChangePageCategory_Click) 
         {
-            PageBuilder pageBuilder = new PageBuilder(new CoreBuilder());
+            PagePanelBuilder pageBuilder = new PagePanelBuilder(new CorePanelBuilder());
 
             pageBuilder
                .AddCategoryLabel("Category:" + i_CategoryName)
@@ -43,7 +43,7 @@ namespace MyFacebookAppUI
 
         public static List<Control> CreatePanelAlbum(Album i_Album, EventHandler i_Button_Click) 
         {
-            AlbumBuilder albumBuilder = new AlbumBuilder(new CoreBuilder());
+            AlbumPanelBuilder albumBuilder = new AlbumPanelBuilder(new CorePanelBuilder());
 
              albumBuilder
                .AddButton(i_Album.Name, i_Button_Click)

@@ -90,11 +90,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuilderDecorator.cs" />
-    <Compile Include="CoreBuilder.cs" />
-    <Compile Include="IBuilder.cs" />
-    <Compile Include="BuilderComposer.cs" />
-    <Compile Include="ImageBuilder.cs" />
+    <Compile Include="PanelBuilderDecorator.cs" />
+    <Compile Include="CorePanelBuilder.cs" />
+    <Compile Include="IPanelBuilder.cs" />
+    <Compile Include="PanelBuilderComposer.cs" />
+    <Compile Include="ImagePanelBuilder.cs" />
     <Compile Include="AlbumsController.cs" />
     <Compile Include="eClickStatus.cs" />
     <Compile Include="FormChangeCategory.cs">
@@ -121,8 +121,8 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="AlbumBuilder.cs" />
-    <Compile Include="PageBuilder.cs" />
+    <Compile Include="AlbumPanelBuilder.cs" />
+    <Compile Include="PagePanelBuilder.cs" />
     <Compile Include="PagesController.cs" />
     <Compile Include="PanelAlbum.cs">
       <SubType>Component</SubType>

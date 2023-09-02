@@ -6,7 +6,7 @@ using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public class ImageBuilder: BuilderDecorator
+    public class ImagePanelBuilder: PanelBuilderDecorator
     {
         private Label m_Label;
         private CheckBox m_CheckBox;
@@ -16,9 +16,9 @@ namespace MyFacebookAppUI
         private readonly int r_LikesLabelYPosition = 180;
         private readonly int r_CheckboxYPosition = 200;
 
-        public ImageBuilder(IBuilder i_Builder) : base(i_Builder) { }
+        public ImagePanelBuilder(IPanelBuilder i_Builder) : base(i_Builder) { }
 
-        public ImageBuilder AddButton(string i_Text, EventHandler i_EventHandler)
+        public ImagePanelBuilder AddButton(string i_Text, EventHandler i_EventHandler)
         {
             m_Button = new Button();
             m_Button.Text = i_Text;
@@ -29,7 +29,7 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public ImageBuilder AddLabel(string i_Name)
+        public ImagePanelBuilder AddLabel(string i_Name)
         {
             m_Label = new Label();
             m_Label.Text = i_Name;
@@ -38,7 +38,7 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public ImageBuilder AddCheckbox(bool i_IsChecked, EventHandler i_EventHandler)
+        public ImagePanelBuilder AddCheckbox(bool i_IsChecked, EventHandler i_EventHandler)
         {
             m_CheckBox = new CheckBox();
             m_CheckBox.Location = new Point(r_XPosition, r_CheckboxYPosition);
@@ -48,7 +48,7 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public override IBuilder Build()
+        public override IPanelBuilder Build()
         {
             base.Build();
             r_Builder.AddToComponents(m_Label);

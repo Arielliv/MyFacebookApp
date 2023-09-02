@@ -4,16 +4,16 @@ using System.Drawing;
 
 namespace MyFacebookAppUI
 {
-    public class BuilderDecorator: IBuilder
+    public class PanelBuilderDecorator: IPanelBuilder
     {
-        protected readonly IBuilder r_Builder;
+        protected readonly IPanelBuilder r_Builder;
 
-        public BuilderDecorator(IBuilder i_Builder)
+        public PanelBuilderDecorator(IPanelBuilder i_Builder)
         {
             r_Builder = i_Builder;
         }
 
-        public virtual IBuilder Build() 
+        public virtual IPanelBuilder Build() 
         {
             return r_Builder.Build();
         }
@@ -23,7 +23,7 @@ namespace MyFacebookAppUI
             r_Builder.AddToComponents(i_Control);
         }
 
-        public IBuilder AddPictureBox(string i_PictureURL, Size i_Size, int i_XPosition, PictureBoxSizeMode i_PictureBoxSizeMode = PictureBoxSizeMode.Normal) 
+        public IPanelBuilder AddPictureBox(string i_PictureURL, Size i_Size, int i_XPosition, PictureBoxSizeMode i_PictureBoxSizeMode = PictureBoxSizeMode.Normal) 
         {
             return r_Builder.AddPictureBox(i_PictureURL, i_Size, i_XPosition, i_PictureBoxSizeMode);
         }

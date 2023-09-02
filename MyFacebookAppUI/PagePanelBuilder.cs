@@ -6,7 +6,7 @@ using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public class PageBuilder: BuilderDecorator
+    public class PagePanelBuilder: PanelBuilderDecorator
     {
         private Label m_CategoryLabel;
         private Label m_PageLabel;
@@ -15,9 +15,9 @@ namespace MyFacebookAppUI
         private readonly int r_LinkLabelYPosition = 146;
         private readonly int r_AddNameLabelYPosition = 100;
 
-        public PageBuilder(IBuilder i_Builder) : base(i_Builder) { }
+        public PagePanelBuilder(IPanelBuilder i_Builder) : base(i_Builder) { }
 
-        public PageBuilder AddCategoryLabel(string i_Name)
+        public PagePanelBuilder AddCategoryLabel(string i_Name)
         {
             m_CategoryLabel = new Label();
             m_CategoryLabel.Text = i_Name;
@@ -26,7 +26,7 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public PageBuilder AddNameLabel(string i_Name)
+        public PagePanelBuilder AddNameLabel(string i_Name)
         {
             m_PageLabel = new Label();
             m_PageLabel.Text = i_Name;
@@ -35,7 +35,7 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public PageBuilder AddLinkLabel(string i_LinkLabelText, Page i_Page, Action<object, EventArgs, Page, Label> i_ClickHandler)
+        public PagePanelBuilder AddLinkLabel(string i_LinkLabelText, Page i_Page, Action<object, EventArgs, Page, Label> i_ClickHandler)
         {
             m_LinkLabel = new LinkLabel();
             m_LinkLabel.Text = i_LinkLabelText;
@@ -48,7 +48,7 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public override IBuilder Build()
+        public override IPanelBuilder Build()
         {
             base.Build();
             r_Builder.AddToComponents(m_CategoryLabel);

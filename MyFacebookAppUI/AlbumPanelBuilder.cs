@@ -5,15 +5,15 @@ using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public class AlbumBuilder: BuilderDecorator
+    public class AlbumPanelBuilder: PanelBuilderDecorator
     {
         private Button m_Button;
         private readonly int r_XPosition = 0;
         private readonly int r_ButtonYPosition = 150;
 
-        public AlbumBuilder(IBuilder i_Builder) : base(i_Builder) { }
+        public AlbumPanelBuilder(IPanelBuilder i_Builder) : base(i_Builder) { }
 
-        public IBuilder AddButton(string i_Text, EventHandler i_EventHandler)
+        public IPanelBuilder AddButton(string i_Text, EventHandler i_EventHandler)
         {
             m_Button = new Button();
             m_Button.Text = i_Text;
@@ -24,7 +24,7 @@ namespace MyFacebookAppUI
             return this;
         }
 
-        public override IBuilder Build() 
+        public override IPanelBuilder Build() 
         {
             base.Build();
             AddToComponents(m_Button);

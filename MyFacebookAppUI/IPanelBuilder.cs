@@ -6,11 +6,11 @@ using MyFacebookAppLogic;
 
 namespace MyFacebookAppUI
 {
-    public interface IBuilder
+    public interface IPanelBuilder
     {
-        IBuilder Build();
+        IPanelBuilder Build();
         void AddToComponents(Control i_Control);
         List<Control> Get();
-        IBuilder AddPictureBox(string i_PictureURL, Size i_Size, int i_XPosition, PictureBoxSizeMode i_PictureBoxSizeMode = PictureBoxSizeMode.Normal);
+        IPanelBuilder AddPictureBox(string i_PictureURL, Size i_Size, int i_XPosition, PictureBoxSizeMode i_PictureBoxSizeMode = PictureBoxSizeMode.Normal);
     }
 }

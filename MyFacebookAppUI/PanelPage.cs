@@ -23,7 +23,7 @@ namespace MyFacebookAppUI
         public void ShowPage()
         {
             Controls.AddRange(
-                BuilderComposer.CreatePanelPage(
+                PanelBuilderComposer.CreatePanelPage(
                     m_Category,
                     m_Page,
                     ChangePageCategory_Click

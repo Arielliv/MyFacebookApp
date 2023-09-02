@@ -28,7 +28,7 @@ namespace MyFacebookAppUI
         public void ShowImage()
         {
             Controls.AddRange(
-                BuilderComposer.CreatePanelImage(
+                PanelBuilderComposer.CreatePanelImage(
                     r_Image.PictureAlbumURL,
                     r_Image.LikedBy.Count,
                     new EventHandler(currentButton_Click),
