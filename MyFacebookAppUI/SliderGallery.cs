@@ -23,36 +23,6 @@ namespace MyFacebookAppUI
 
         public List<Image> Images => r_Images;
 
-        public void AddImageToSliderGallery(Photo i_Photo)
-        {
-            Image image = i_Photo.ImageNormal;
-
-            r_Images.Add(image);
-        }
-
-        public void RemovePhotoFromSliderGallery(Photo i_Photo)
-        {
-            Image image = i_Photo.ImageNormal;
-
-            r_Images.Remove(image);
-        }
-
-        public void StopSlider()
-        {
-            r_Timer.Stop();
-            this.Hide();
-        }
-
-        public void StartSlider()
-        {
-            if (r_Images.Count != 0)
-            {
-                this.Image = r_Images[0];
-                r_Timer.Start();
-                this.Show();
-            }
-        }
-
         private void presentedImage(object sender, EventArgs e)
         {
             if (r_Images.Count > 0)
